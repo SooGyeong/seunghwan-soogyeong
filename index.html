@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="저희 결혼합니다"> <meta property="og:description" content="0000년 0월 0일, 소중한 분들을 초대합니다."> <meta property="og:image" content="images/main.jpg"> <title>OOO & OOO의 모바일 청첩장</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* [기본 스타일 설정] */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9; /* 전체 배경색 */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* [모바일 화면 컨테이너] */
+        .container {
+            max-width: 480px; /* 모바일 너비 제한 */
+            margin: 0 auto; /* 중앙 정렬 */
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* [섹션별 스타일] */
+        section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* [메인 사진 영역] */
+        .main-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .date-loc {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        /* [강조 텍스트] */
+        .highlight {
+            color: #e88ca6; /* 포인트 컬러 (분홍색 예시) */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="main-photo">
+            <img src="https://via.placeholder.com/480x640" alt="메인 웨딩 사진">
+        </header>
+
+        <section>
+            <h1 class="title">신랑이름 <span class="highlight">&hearts;</span> 신부이름</h1>
+            <p class="date-loc">
+                2024년 10월 20일 토요일 오후 1시<br>
+                아름다운 웨딩홀 1층 그랜드볼룸
+            </p>
+        </section>
+
+        <hr style="width: 50%; border: 0.5px solid #eee;">
+
+        <section>
+            <h3>소중한 분들을 초대합니다</h3>
+            <p>
+                서로의 이름을 부르는 것만으로도<br>
+                사랑의 깊이를 확인할 수 있는 두 사람이<br>
+                꽃과 나무처럼 걸어와서<br>
+                서로의 모든 것이 되려 합니다.
+            </p>
+        </section>
+
+        <section>
+            <h3>오시는 길</h3>
+            <div id="map" style="width:100%; height:300px; background-color:#eee;">
+                지도 영역
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
