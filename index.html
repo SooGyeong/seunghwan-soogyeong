@@ -2,45 +2,69 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>이승환 ❤️ 조수경 결혼합니다</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     
     <style>
         :root {
             --bg-color: #ffffff;
-            --point-color: #bca08a; /* 샴페인 골드 느낌 */
+            --point-color: #bca08a; /* 샴페인 골드 */
             --text-main: #333333;
             --text-sub: #888888;
             --bg-soft: #fbfaf8;
         }
 
         body { margin: 0; padding: 0; background-color: #f5f5f5; font-family: 'Gowun Batang', serif; color: var(--text-main); word-break: keep-all; line-height: 1.8; }
-        .wrapper { max-width: 480px; margin: 0 auto; background-color: var(--bg-color); overflow-x: hidden; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+        /* PC에서 봐도 모바일 비율 유지 */
+        .wrapper { max-width: 480px; margin: 0 auto; background-color: var(--bg-color); overflow-x: hidden; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.05); min-height: 100vh; }
+
+        /* [기능 1] BGM 버튼 (우측 상단 고정) */
+        .bgm-btn { position: fixed; top: 20px; right: 20px; z-index: 999; width: 40px; height: 40px; background: rgba(255,255,255,0.8); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #eee; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .bgm-icon { width: 20px; height: 20px; fill: var(--point-color); animation: spin 4s linear infinite; }
+        .bgm-paused .bgm-icon { animation: none; opacity: 0.5; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
         /* [1. 메인 섹션] */
         .main-section { position: relative; width: 100%; text-align: center; padding-bottom: 50px; }
-        .main-img-wrap { width: 100%; height: 600px; overflow: hidden; }
+        
+        /* [기능 2] 상단 영문 이름 (메인 이미지 위에 고정) */
+        .eng-name { position: absolute; top: 30px; color: white; font-family: 'Nanum Myeongjo', serif; font-size: 1.2rem; text-shadow: 0 0 5px rgba(0,0,0,0.3); z-index: 10; }
+        .eng-name.left { left: 25px; }
+        .eng-name.right { right: 25px; }
+
+        .main-img-wrap { width: 100%; height: 100vh; max-height: 700px; overflow: hidden; position: relative; }
+        /* 이미지 위 그라데이션 (글씨 잘 보이게) */
+        .main-img-wrap::after { content:''; position: absolute; top:0; left:0; width:100%; height:150px; background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent); }
         .main-img { width: 100%; height: 100%; object-fit: cover; }
         
-        .main-info { margin-top: 40px; }
-        .main-info .date { font-size: 0.9rem; letter-spacing: 3px; color: var(--point-color); font-weight: bold; }
-        .main-info .names { font-size: 1.6rem; margin: 15px 0; font-family: 'Nanum Myeongjo', serif; }
-        .main-info .location { font-size: 0.85rem; color: var(--text-sub); }
+        .main-info { padding: 40px 0; }
+        .main-info .date { font-size: 1rem; letter-spacing: 2px; color: var(--point-color); font-weight: bold; }
+        .main-info .names { font-size: 1.8rem; margin: 20px 0; font-family: 'Nanum Myeongjo', serif; }
+        .main-info .location { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 20px; }
+        
+        /* [기능 3] D-DAY 카운터 */
+        .d-day-box { display: inline-block; background: var(--point-color); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; margin-top: 10px; }
 
         /* [공통 섹션] */
-        section { padding: 80px 30px; text-align: center; }
-        .section-title { font-size: 0.75rem; color: var(--point-color); letter-spacing: 5px; margin-bottom: 40px; font-weight: bold; }
+        section { padding: 60px 25px; text-align: center; }
+        .section-title { font-size: 0.8rem; color: var(--point-color); letter-spacing: 4px; margin-bottom: 30px; font-weight: bold; text-transform: uppercase; }
 
         /* [2. 초대글] */
         .greeting-text { font-size: 0.95rem; line-height: 2.2; color: #444; }
-        .family-info { margin-top: 50px; border-top: 1px solid #f0f0f0; padding-top: 40px; font-size: 0.95rem; }
-        .family-info p { margin: 10px 0; }
-        .family-info b { font-weight: 700; color: #222; margin-left: 5px; }
+        .family-info { margin-top: 50px; border-top: 1px solid #eee; padding-top: 40px; font-size: 1rem; }
+        .family-info p { margin: 12px 0; }
+        .family-info b { font-weight: 700; color: #222; margin-left: 5px; font-size: 1.1rem; }
 
-        /* [3. 캘린더 - 2026년 4월] */
+        /* [기능 4] 갤러리 (Swiper) */
+        .swiper { width: 100%; height: auto; padding-bottom: 30px; }
+        .swiper-slide { text-align: center; background: #fff; display: flex; justify-content: center; align-items: center; }
+        .swiper-slide img { display: block; width: 100%; height: 100vw; max-height: 480px; object-fit: cover; border-radius: 4px; pointer-events: none; /* 이미지 저장/꾹누르기 방지 */ }
+
+        /* [3. 캘린더] */
         .calendar-wrap { background-color: var(--bg-soft); border-radius: 15px; padding: 30px 20px; margin-top: 20px; }
         .calendar-month { font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 2px; }
         .calendar-table { width: 100%; border-collapse: collapse; }
@@ -49,50 +73,103 @@
         .sun { color: #d9534f; }
         .today { background: var(--point-color); color: white; border-radius: 50%; width: 30px; height: 30px; line-height: 30px; display: inline-block; }
 
-        /* [4. 마음 전하실 곳] */
-        .account-box { text-align: left; }
+        /* [기능 5] 지도 & 오시는 길 */
+        #map { width: 100%; height: 350px; border-radius: 8px; margin-bottom: 20px; background-color: #eee; /* 로딩 전 배경 */ }
+        .map-buttons { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
+        .map-btn { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 6px; background: white; font-size: 0.85rem; text-decoration: none; color: #333; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        
+        /* [기능 6] 마음 전하실 곳 + 카카오페이 */
+        .account-box { text-align: left; margin-top: 20px; }
         details { background: white; border: 1px solid #eee; margin-bottom: 12px; border-radius: 8px; overflow: hidden; }
-        summary { padding: 18px; cursor: pointer; list-style: none; font-size: 0.9rem; display: flex; justify-content: space-between; align-items: center; }
-        summary::after { content: '↓'; font-size: 0.8rem; color: var(--point-color); }
-        details[open] summary::after { content: '↑'; }
-        .account-detail { padding: 15px 18px; background: #fdfdfd; border-top: 1px solid #f9f9f9; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; }
-        .btn-copy { background: #f0f0f0; border: none; padding: 6px 12px; border-radius: 4px; font-size: 0.7rem; cursor: pointer; color: #666; }
+        summary { padding: 18px; cursor: pointer; list-style: none; font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
+        summary::after { content: '⌵'; color: var(--point-color); font-weight: bold; }
+        details[open] summary::after { transform: rotate(180deg); }
+        .account-row { padding: 15px 18px; background: #fdfdfd; border-top: 1px solid #f9f9f9; font-size: 0.9rem; display: flex; flex-direction: column; gap: 8px; }
+        .bank-info { display: flex; justify-content: space-between; align-items: center; }
+        .btn-group { display: flex; gap: 5px; justify-content: flex-end; margin-top: 5px; }
+        .btn-small { padding: 6px 12px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; text-decoration: none; display: inline-block; }
+        .btn-copy { background: #eee; border: none; color: #555; }
+        .btn-kakao { background: #fee500; color: #3c1e1e; border: none; } /* 카카오 노란색 */
 
-        /* [5. RSVP 하단 버튼] */
-        .rsvp-bar { position: fixed; bottom: 0; width: 100%; max-width: 480px; background: rgba(255,255,255,0.9); padding: 15px 0 25px; backdrop-filter: blur(5px); z-index: 100; text-align: center; }
-        .rsvp-btn { background: var(--point-color); color: white; padding: 14px 80px; border-radius: 50px; text-decoration: none; font-size: 0.9rem; font-weight: bold; box-shadow: 0 4px 15px rgba(188, 160, 138, 0.3); }
+        /* [기능 7] 하단 공유 버튼 (RSVP 대신 카톡 공유) */
+        .share-bar { margin-top: 30px; display: flex; gap: 10px; justify-content: center; padding-bottom: 50px; }
+        .kakao-share-btn { background: #fee500; color: #3c1e1e; padding: 15px 30px; border-radius: 30px; font-weight: bold; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; box-shadow: 0 4px 10px rgba(254, 229, 0, 0.4); }
 
-        /* 애니메이션 효과 보정 */
+        .footer-image { width: 100%; height: auto; display: block; margin-top: 50px; }
+
+        /* AOS 설정 */
         [data-aos] { transition-timing-function: ease-in-out; }
     </style>
 </head>
 <body>
 
 <div class="wrapper">
+    <audio id="bgm" loop>
+        <source src="./music.mp3" type="audio/mp3"> </audio>
+    <div class="bgm-btn" onclick="toggleBgm()">
+        <svg class="bgm-icon" viewBox="0 0 24 24">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+    </div>
+
     <div class="main-section">
         <div class="main-img-wrap">
+            <div class="eng-name left">Seunghwan</div>
+            <div class="eng-name right">Sukyoung</div>
             <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" class="main-img" alt="메인사진">
         </div>
+        
         <div class="main-info" data-aos="fade-up">
             <div class="date">2026. 04. 18. SAT. PM 12:00</div>
-            <div class="names">이승환 <small style="font-size: 0.8rem; color: #ccc;">|</small> 조수경</div>
-            <div class="location">어느 예쁜 예식장, 어느 홀</div>
+            <div class="names">이승환 <small style="font-size: 1rem; color: #ccc; margin: 0 5px;">|</small> 조수경</div>
+            <div class="location">어느 예쁜 예식장, 그랜드볼룸</div>
+            
+            <div id="d-day" class="d-day-box"></div>
         </div>
     </div>
 
     <section>
         <div class="section-title" data-aos="fade-up">INVITATION</div>
-        <div class="greeting-text" data-aos="fade-up" data-aos-delay="200">
-            곁에 있을 때 가장 나다워지는 사람을 만났습니다.<br>
-            함께 있으면 미래가 기대되는 사람을 만났습니다.<br><br>
-            이제 저희 두 사람, 믿음과 사랑으로<br>
-            하나의 길을 함께 걸어가고자 합니다.<br>
-            저희의 시작을 함께 축복해 주시면 감사하겠습니다.
+        <div class="greeting-text" data-aos="fade-up" data-aos-delay="100">
+            서로의 이름을 부르는 것만으로도<br>
+            사랑의 깊이를 확인합니다.<br><br>
+            두 사람의 꽃다운 날,<br>
+            저희 두 사람 약속의 자리에<br>
+            소중한 분들을 모십니다.
         </div>
         
         <div class="family-info" data-aos="fade-up">
             <p>이철수 · 김영희 <span style="font-size: 0.8rem; color: #999;">의 차남</span> <b>승환</b></p>
             <p>박민수 · 최정숙 <span style="font-size: 0.8rem; color: #999;">의 장녀</span> <b>수경</b></p>
+        </div>
+    </section>
+
+    <section style="background-color: var(--bg-soft);">
+        <div class="section-title" data-aos="fade-up">GALLERY</div>
+        <div class="swiper mySwiper" data-aos="fade-up">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="사진1"></div>
+                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?auto=format&fit=crop&w=800&q=80" alt="사진2"></div>
+                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?auto=format&fit=crop&w=800&q=80" alt="사진3"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-title" data-aos="fade-up">LOCATION</div>
+        
+        <div id="map" data-aos="fade-up"></div>
+        
+        <div class="location-text" data-aos="fade-up">
+            <h3 style="margin-bottom: 5px;">어느 예식장</h3>
+            <p style="font-size: 0.9rem; color: #666; margin-top:0;">서울특별시 강남구 테헤란로 123</p>
+        </div>
+
+        <div class="map-buttons" data-aos="fade-up">
+            <a href="https://naver.me/yourlink" target="_blank" class="map-btn">네이버 지도</a>
+            <a href="https://kko.to/yourlink" target="_blank" class="map-btn">카카오 맵</a>
+            <a href="tel:02-1234-5678" class="map-btn">전화 문의</a>
         </div>
     </section>
 
@@ -112,9 +189,6 @@
                     <tr><td class="sun">26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td></tr>
                 </tbody>
             </table>
-            <p style="margin-top: 25px; font-size: 0.85rem; color: #666;">
-                4월 18일 토요일 오후 12시
-            </p>
         </div>
     </section>
 
@@ -122,46 +196,158 @@
         <div class="section-title" data-aos="fade-up">FOR YOUR HEART</div>
         <div class="account-box" data-aos="fade-up">
             <details>
-                <summary>신랑측 마음 전하실 곳</summary>
-                <div class="account-detail">
-                    <span>국민은행 123456-01-123456 (이승환)</span>
-                    <button class="btn-copy" onclick="copyToClipboard('123456-01-123456')">복사</button>
-                </div>
-                <div class="account-detail">
-                    <span>신한은행 110-123-456789 (부: 이철수)</span>
-                    <button class="btn-copy" onclick="copyToClipboard('110-123-456789')">복사</button>
+                <summary>신랑측 계좌번호</summary>
+                <div class="account-row">
+                    <div class="bank-info">
+                        <span>국민 123456-01-123456 (이승환)</span>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-small btn-copy" onclick="copyToClipboard('123456-01-123456')">복사</button>
+                        <a href="kakaotalk://kakaopay/q/YOUR_QR_CODE" class="btn-small btn-kakao">송금</a>
+                    </div>
                 </div>
             </details>
             <details>
-                <summary>신부측 마음 전하실 곳</summary>
-                <div class="account-detail">
-                    <span>우리은행 1002-123-456789 (조수경)</span>
-                    <button class="btn-copy" onclick="copyToClipboard('1002-123-456789')">복사</button>
-                </div>
-                <div class="account-detail">
-                    <span>기업은행 010-1234-5678 (부: 박민수)</span>
-                    <button class="btn-copy" onclick="copyToClipboard('010-1234-5678')">복사</button>
+                <summary>신부측 계좌번호</summary>
+                <div class="account-row">
+                    <div class="bank-info">
+                        <span>우리 1002-123-456789 (조수경)</span>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-small btn-copy" onclick="copyToClipboard('1002-123-456789')">복사</button>
+                        <a href="#" class="btn-small btn-kakao">송금</a>
+                    </div>
                 </div>
             </details>
         </div>
     </section>
 
-    <div style="height: 120px;"></div>
-</div>
+    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=80" class="footer-image" alt="마무리">
 
-<div class="rsvp-bar">
-    <a href="https://docs.google.com/forms/your-link" class="rsvp-btn">참석 의사 전달하기</a>
+    <div class="share-bar">
+        <button class="kakao-share-btn" onclick="shareKakao()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#3c1e1e"><path d="M12 3C6.48 3 2 6.48 2 10.76c0 2.54 1.59 4.8 4.06 6.18-.18.66-.65 2.38-.75 2.72-.11.41.15.4.32.29l3.78-2.5c.85.12 1.73.18 2.59.18 5.52 0 10-3.48 10-7.76S17.52 3 12 3z"/></svg>
+            카카오톡 공유하기
+        </button>
+    </div>
+
 </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js" integrity="sha384-mXVrIX2T/Kszp6Z0aEWaQa+X5Fv3qjiSxLMTrtNnQ96D9tD2y0jz33cz8m3AFaZ9" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=YOUR_NAVER_CLIENT_ID"></script>
+
 <script>
-    // 애니메이션 초기화
+    // 1. AOS(스크롤 애니메이션) 초기화
     AOS.init({ duration: 1000, once: true });
 
-    // 계좌복사 함수
+    // 2. Swiper(갤러리) 초기화
+    var swiper = new Swiper(".mySwiper", {
+        loop: true,
+        pagination: { el: ".swiper-pagination", clickable: true },
+        autoHeight: true, // 높이 자동 조절
+    });
+
+    // 3. D-Day 계산
+    const weddingDate = new Date('2026-04-18T12:00:00'); // 결혼식 날짜
+    const dDayElement = document.getElementById('d-day');
+
+    function updateDday() {
+        const now = new Date();
+        const diff = weddingDate - now;
+        const diffDay = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+        if (diffDay > 0) dDayElement.innerText = `D-${diffDay}`;
+        else if (diffDay === 0) dDayElement.innerText = `D-DAY`;
+        else dDayElement.innerText = `D+${Math.abs(diffDay)}`;
+    }
+    updateDday();
+
+    // 4. BGM 컨트롤
+    const bgm = document.getElementById('bgm');
+    const bgmBtn = document.querySelector('.bgm-btn');
+    let isPlaying = false;
+
+    function toggleBgm() {
+        if (isPlaying) {
+            bgm.pause();
+            bgmBtn.classList.add('bgm-paused');
+        } else {
+            bgm.play().catch(e => console.log('재생 실패(브라우저 정책):', e));
+            bgmBtn.classList.remove('bgm-paused');
+        }
+        isPlaying = !isPlaying;
+    }
+    // 초기 로드 시 아이콘 멈춤 상태
+    bgmBtn.classList.add('bgm-paused');
+    
+    // 화면 터치 시 자동 재생 시도 (모바일 대응)
+    document.body.addEventListener('click', function() {
+        if(!isPlaying) toggleBgm();
+    }, { once: true });
+
+
+    // 5. 계좌 복사
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(() => {
-            alert('계좌번호가 복사되었습니다.');
+            alert('계좌번호가 복사되었습니다: ' + text);
+        }).catch(err => {
+            console.error('복사 실패:', err);
+        });
+    }
+
+    // 6. 네이버 지도 생성 (API 키가 있어야 보임)
+    // 예식장 위도, 경도를 찾아서 아래 lat, lng에 넣어야 합니다.
+    // 예: 강남역 (37.498095, 127.027610)
+    try {
+        var mapOptions = {
+            center: new naver.maps.LatLng(37.498095, 127.027610),
+            zoom: 15
+        };
+        var map = new naver.maps.Map('map', mapOptions);
+        
+        // 마커 찍기
+        var marker = new naver.maps.Marker({
+            position: new naver.maps.LatLng(37.498095, 127.027610),
+            map: map
+        });
+    } catch (e) {
+        console.log("네이버 지도 키가 없어서 로드되지 않음");
+        document.getElementById('map').innerText = "지도 로딩 중 (API 키 필요)";
+        document.getElementById('map').style.textAlign = "center";
+        document.getElementById('map').style.lineHeight = "350px";
+    }
+
+    // 7. 카카오톡 공유하기 (일정 등록 버튼 포함)
+    // https://developers.kakao.com 에서 JavaScript 키 발급 필요
+    Kakao.init('YOUR_KAKAO_JS_KEY'); // <-- 여기에 본인 JS 키 입력
+
+    function shareKakao() {
+        Kakao.Share.sendDefault({
+            objectType: 'calendar', // 캘린더 타입 사용
+            id: 'wedding_event', // 고유 이벤트 ID (임의 지정)
+            content: {
+                title: '이승환 ❤️ 조수경 결혼합니다',
+                description: '2026년 4월 18일 토요일 오후 12시',
+                imageUrl: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80', // 메인 사진 URL
+                link: {
+                    mobileWebUrl: window.location.href,
+                    webUrl: window.location.href,
+                },
+            },
+            buttons: [
+                {
+                    title: '청첩장 보기',
+                    link: {
+                        mobileWebUrl: window.location.href,
+                        webUrl: window.location.href,
+                    },
+                },
+            ],
+            // 일정 정보
+            date: '2026-04-18T12:00:00', // UTC 시간 기준 주의 (한국시간 -9시간 필요할 수도 있음, 테스트 필요)
         });
     }
 </script>
