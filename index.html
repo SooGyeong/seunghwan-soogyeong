@@ -3,182 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이승환 ❤️ 조수경</title>
+    <title>이승환 ❤️ 조수경 결혼합니다</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
         :root {
-            --bg-main: #fcfaf9; /* 배경 베이지 */
-            --text-gold: #bca08a; /* 포인트 골드 */
-            --text-black: #333333;
-            --text-gray: #777777;
+            --bg-color: #ffffff;
+            --point-color: #bca08a; /* 샴페인 골드 느낌 */
+            --text-main: #333333;
+            --text-sub: #888888;
+            --bg-soft: #fbfaf8;
         }
 
-        body { margin: 0; padding: 0; background-color: #f0f0f0; font-family: 'Noto Sans KR', sans-serif; color: var(--text-black); word-break: keep-all; }
-        .wrapper { max-width: 480px; margin: 0 auto; background-color: white; overflow-x: hidden; position: relative; }
+        body { margin: 0; padding: 0; background-color: #f5f5f5; font-family: 'Gowun Batang', serif; color: var(--text-main); word-break: keep-all; line-height: 1.8; }
+        .wrapper { max-width: 480px; margin: 0 auto; background-color: var(--bg-color); overflow-x: hidden; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
 
-        /* [1. 메인: 눈 내리는 효과] */
-        .main-section { position: relative; width: 100%; height: 100vh; overflow: hidden; background: #000; }
-        .main-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
-        #snow-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
+        /* [1. 메인 섹션] */
+        .main-section { position: relative; width: 100%; text-align: center; padding-bottom: 50px; }
+        .main-img-wrap { width: 100%; height: 600px; overflow: hidden; }
+        .main-img { width: 100%; height: 100%; object-fit: cover; }
         
-        .main-title-box { position: absolute; bottom: 10%; width: 100%; text-align: center; color: white; z-index: 20; }
-        .main-title-box h1 { font-family: 'Gowun Batang', serif; font-size: 1.8rem; margin: 0; font-weight: 400; letter-spacing: 2px; }
-        .main-title-box p { font-size: 0.9rem; margin-top: 10px; opacity: 0.8; }
+        .main-info { margin-top: 40px; }
+        .main-info .date { font-size: 0.9rem; letter-spacing: 3px; color: var(--point-color); font-weight: bold; }
+        .main-info .names { font-size: 1.6rem; margin: 15px 0; font-family: 'Nanum Myeongjo', serif; }
+        .main-info .location { font-size: 0.85rem; color: var(--text-sub); }
 
         /* [공통 섹션] */
-        section { padding: 80px 24px; text-align: center; }
-        .section-title { font-family: 'Gowun Batang', serif; color: var(--text-gold); font-size: 0.8rem; letter-spacing: 4px; margin-bottom: 40px; }
-        .line-divider { width: 1px; height: 40px; background-color: #eee; margin: 0 auto 40px; }
+        section { padding: 80px 30px; text-align: center; }
+        .section-title { font-size: 0.75rem; color: var(--point-color); letter-spacing: 5px; margin-bottom: 40px; font-weight: bold; }
 
         /* [2. 초대글] */
-        .greeting-text { line-height: 2.2; font-size: 0.95rem; color: #444; font-weight: 300; }
+        .greeting-text { font-size: 0.95rem; line-height: 2.2; color: #444; }
+        .family-info { margin-top: 50px; border-top: 1px solid #f0f0f0; padding-top: 40px; font-size: 0.95rem; }
+        .family-info p { margin: 10px 0; }
+        .family-info b { font-weight: 700; color: #222; margin-left: 5px; }
 
-        /* [3. 캘린더] */
-        .calendar-container { margin-top: 40px; font-family: 'Gowun Batang', serif; }
-        .calendar-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        .calendar-table th { color: var(--text-gold); font-weight: 400; padding: 10px; font-size: 0.8rem; }
-        .calendar-table td { padding: 10px; font-size: 0.9rem; color: #555; }
-        .today { background: var(--text-gold); color: white !important; border-radius: 50%; display: inline-block; width: 30px; height: 30px; line-height: 30px; }
+        /* [3. 캘린더 - 2026년 4월] */
+        .calendar-wrap { background-color: var(--bg-soft); border-radius: 15px; padding: 30px 20px; margin-top: 20px; }
+        .calendar-month { font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 2px; }
+        .calendar-table { width: 100%; border-collapse: collapse; }
+        .calendar-table th { padding: 10px 0; font-size: 0.75rem; font-weight: 400; color: var(--point-color); }
+        .calendar-table td { padding: 12px 0; font-size: 0.9rem; position: relative; }
+        .sun { color: #d9534f; }
+        .today { background: var(--point-color); color: white; border-radius: 50%; width: 30px; height: 30px; line-height: 30px; display: inline-block; }
 
-        /* [4. 아코디언 계좌번호] */
-        details { background: #f9f9f9; margin-bottom: 10px; border-radius: 5px; text-align: left; }
-        summary { padding: 15px; cursor: pointer; list-style: none; font-size: 0.9rem; color: #555; display: flex; justify-content: space-between; align-items: center; }
-        summary::after { content: '∨'; color: var(--text-gold); font-size: 0.7rem; }
-        details[open] summary::after { content: '∧'; }
-        .account-detail { padding: 15px; border-top: 1px solid #eee; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; }
-        .btn-copy { background: #eee; border: none; padding: 5px 10px; border-radius: 3px; font-size: 0.7rem; cursor: pointer; }
+        /* [4. 마음 전하실 곳] */
+        .account-box { text-align: left; }
+        details { background: white; border: 1px solid #eee; margin-bottom: 12px; border-radius: 8px; overflow: hidden; }
+        summary { padding: 18px; cursor: pointer; list-style: none; font-size: 0.9rem; display: flex; justify-content: space-between; align-items: center; }
+        summary::after { content: '↓'; font-size: 0.8rem; color: var(--point-color); }
+        details[open] summary::after { content: '↑'; }
+        .account-detail { padding: 15px 18px; background: #fdfdfd; border-top: 1px solid #f9f9f9; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; }
+        .btn-copy { background: #f0f0f0; border: none; padding: 6px 12px; border-radius: 4px; font-size: 0.7rem; cursor: pointer; color: #666; }
 
-        /* [5. 하단 버튼] */
-        .rsvp-bar { position: fixed; bottom: 0; width: 100%; max-width: 480px; background: white; padding: 15px 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.05); z-index: 100; display: flex; justify-content: center; }
-        .rsvp-btn { background: var(--text-gold); color: white; padding: 12px 60px; border-radius: 30px; text-decoration: none; font-size: 0.9rem; font-weight: bold; }
+        /* [5. RSVP 하단 버튼] */
+        .rsvp-bar { position: fixed; bottom: 0; width: 100%; max-width: 480px; background: rgba(255,255,255,0.9); padding: 15px 0 25px; backdrop-filter: blur(5px); z-index: 100; text-align: center; }
+        .rsvp-btn { background: var(--point-color); color: white; padding: 14px 80px; border-radius: 50px; text-decoration: none; font-size: 0.9rem; font-weight: bold; box-shadow: 0 4px 15px rgba(188, 160, 138, 0.3); }
+
+        /* 애니메이션 효과 보정 */
+        [data-aos] { transition-timing-function: ease-in-out; }
     </style>
 </head>
 <body>
 
 <div class="wrapper">
     <div class="main-section">
-        <canvas id="snow-canvas"></canvas>
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" class="main-img">
-        <div class="main-title-box" data-aos="fade-up" data-aos-duration="1500">
-            <h1>이승환 & 조수경</h1>
-            <p>2026. 04. 18. SAT PM 12:00</p>
+        <div class="main-img-wrap">
+            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" class="main-img" alt="메인사진">
+        </div>
+        <div class="main-info" data-aos="fade-up">
+            <div class="date">2026. 04. 18. SAT. PM 12:00</div>
+            <div class="names">이승환 <small style="font-size: 0.8rem; color: #ccc;">|</small> 조수경</div>
+            <div class="location">어느 예쁜 예식장, 어느 홀</div>
         </div>
     </div>
 
-    <section style="background-color: var(--bg-main);">
+    <section>
         <div class="section-title" data-aos="fade-up">INVITATION</div>
         <div class="greeting-text" data-aos="fade-up" data-aos-delay="200">
-            서로가 마주 보며 다진 약속을<br>
-            함께 걸어가는 믿음으로 지켜가겠습니다.<br>
-            저희의 새로운 시작을 축복해 주세요.
+            곁에 있을 때 가장 나다워지는 사람을 만났습니다.<br>
+            함께 있으면 미래가 기대되는 사람을 만났습니다.<br><br>
+            이제 저희 두 사람, 믿음과 사랑으로<br>
+            하나의 길을 함께 걸어가고자 합니다.<br>
+            저희의 시작을 함께 축복해 주시면 감사하겠습니다.
         </div>
-        <div class="line-divider" style="margin-top: 40px;"></div>
-        <div data-aos="fade-up">
-            <p style="font-size: 1rem;">이철수 · 김영희 <span style="font-size: 0.8rem; color: #999;">의 차남</span> <strong>성훈</strong></p>
-            <p style="font-size: 1rem;">박민수 · 최정숙 <span style="font-size: 0.8rem; color: #999;">의 장녀</span> <strong>채연</strong></p>
+        
+        <div class="family-info" data-aos="fade-up">
+            <p>이철수 · 김영희 <span style="font-size: 0.8rem; color: #999;">의 차남</span> <b>승환</b></p>
+            <p>박민수 · 최정숙 <span style="font-size: 0.8rem; color: #999;">의 장녀</span> <b>수경</b></p>
+        </div>
+    </section>
+
+    <section style="background-color: var(--bg-soft);">
+        <div class="section-title" data-aos="fade-up">WEDDING DAY</div>
+        <div class="calendar-wrap" data-aos="fade-up">
+            <div class="calendar-month">2026. 04</div>
+            <table class="calendar-table">
+                <thead>
+                    <tr><th class="sun">SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+                    <tr><td class="sun">5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+                    <tr><td class="sun">12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td><span class="today">18</span></td></tr>
+                    <tr><td class="sun">19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+                    <tr><td class="sun">26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td></tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 25px; font-size: 0.85rem; color: #666;">
+                4월 18일 토요일 오후 12시
+            </p>
         </div>
     </section>
 
     <section>
-        <div class="section-title" data-aos="fade-up">CALENDAR</div>
-        <div class="calendar-container" data-aos="fade-up">
-            <h3 style="font-weight: 400; margin-bottom: 20px;">2026. 05. 23</h3>
-            <table class="calendar-table">
-                <thead>
-                    <tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
-                    <tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
-                    <tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
-                    <tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td><span class="today">23</span></td></tr>
-                    <tr><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
-                </tbody>
-            </table>
-            <p style="margin-top: 30px; font-size: 0.85rem; color: var(--text-gray);">오후 12시 00분</p>
-        </div>
-    </section>
-
-    <section style="background-color: var(--bg-main);">
         <div class="section-title" data-aos="fade-up">FOR YOUR HEART</div>
-        <div data-aos="fade-up">
+        <div class="account-box" data-aos="fade-up">
             <details>
                 <summary>신랑측 마음 전하실 곳</summary>
                 <div class="account-detail">
-                    <span>국민은행 123456-01-123456 (이성훈)</span>
-                    <button class="btn-copy" onclick="alert('복사되었습니다')">복사</button>
+                    <span>국민은행 123456-01-123456 (이승환)</span>
+                    <button class="btn-copy" onclick="copyToClipboard('123456-01-123456')">복사</button>
+                </div>
+                <div class="account-detail">
+                    <span>신한은행 110-123-456789 (부: 이철수)</span>
+                    <button class="btn-copy" onclick="copyToClipboard('110-123-456789')">복사</button>
                 </div>
             </details>
             <details>
                 <summary>신부측 마음 전하실 곳</summary>
                 <div class="account-detail">
-                    <span>신한은행 110-123-456789 (김채연)</span>
-                    <button class="btn-copy" onclick="alert('복사되었습니다')">복사</button>
+                    <span>우리은행 1002-123-456789 (조수경)</span>
+                    <button class="btn-copy" onclick="copyToClipboard('1002-123-456789')">복사</button>
+                </div>
+                <div class="account-detail">
+                    <span>기업은행 010-1234-5678 (부: 박민수)</span>
+                    <button class="btn-copy" onclick="copyToClipboard('010-1234-5678')">복사</button>
                 </div>
             </details>
         </div>
     </section>
 
-    <div style="height: 100px;"></div>
+    <div style="height: 120px;"></div>
 </div>
 
 <div class="rsvp-bar">
-    <a href="#" class="rsvp-btn">참석 의사 전달하기</a>
+    <a href="https://docs.google.com/forms/your-link" class="rsvp-btn">참석 의사 전달하기</a>
 </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 1200, once: true });
+    // 애니메이션 초기화
+    AOS.init({ duration: 1000, once: true });
 
-    // 눈 내리는 효과 (Snow Effect)
-    const canvas = document.getElementById('snow-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height, snowflakes = [];
-
-    function init() {
-        width = canvas.width = window.innerWidth > 480 ? 480 : window.innerWidth;
-        height = canvas.height = window.innerHeight;
-        snowflakes = [];
-        for (let i = 0; i < 100; i++) {
-            snowflakes.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                r: Math.random() * 3 + 1,
-                d: Math.random() * 1
-            });
-        }
+    // 계좌복사 함수
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert('계좌번호가 복사되었습니다.');
+        });
     }
-
-    function draw() {
-        ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-        ctx.beginPath();
-        for (let i = 0; i < snowflakes.length; i++) {
-            let f = snowflakes[i];
-            ctx.moveTo(f.x, f.y);
-            ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
-        }
-        ctx.fill();
-        move();
-    }
-
-    function move() {
-        for (let i = 0; i < snowflakes.length; i++) {
-            let f = snowflakes[i];
-            f.y += Math.pow(f.d, 2) + 1;
-            f.x += Math.sin(f.y / 50);
-            if (f.y > height) {
-                snowflakes[i] = { x: Math.random() * width, y: 0, r: f.r, d: f.d };
-            }
-        }
-    }
-
-    init();
-    setInterval(draw, 30);
-    window.addEventListener('resize', init);
 </script>
 
 </body>
