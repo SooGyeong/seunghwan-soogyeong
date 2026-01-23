@@ -3,95 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="저희 결혼합니다"> <meta property="og:description" content="0000년 0월 0일, 소중한 분들을 초대합니다."> <meta property="og:image" content="images/main.jpg"> <title>OOO & OOO의 모바일 청첩장</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>저희 결혼합니다</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     
     <style>
-        /* [기본 스타일 설정] */
+        :root {
+            --bg-color: #ffffff;
+            --point-color: #bca08a; /* 고급스러운 골드/베이지 톤 */
+            --text-main: #333333;
+            --text-sub: #888888;
+        }
+
         body {
+            margin: 0; padding: 0;
+            background-color: #f2f2f2;
             font-family: 'Noto Sans KR', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9; /* 전체 배경색 */
-            color: #333;
-            line-height: 1.6;
+            color: var(--text-main);
+            word-break: keep-all;
         }
 
-        /* [모바일 화면 컨테이너] */
-        .container {
-            max-width: 480px; /* 모바일 너비 제한 */
-            margin: 0 auto; /* 중앙 정렬 */
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        .wrapper {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
         }
 
-        /* [섹션별 스타일] */
-        section {
-            padding: 40px 20px;
+        /* 1. 메인 섹션 */
+        .main-section {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* 화면 꽉 차게 */
+            overflow: hidden;
             text-align: center;
         }
-
-        /* [메인 사진 영역] */
-        .main-photo img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .main-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.9);
         }
-
-        .title {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #555;
+        .main-text {
+            position: absolute;
+            bottom: 10%; left: 0; right: 0;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
+        .main-text h1 { font-family: 'Gowun Batang', serif; font-size: 1.8rem; margin: 0; }
+        .main-text p { font-size: 1rem; margin-top: 10px; opacity: 0.9; }
 
-        .date-loc {
+        /* 공통 섹션 스타일 */
+        section { padding: 80px 20px; text-align: center; }
+        .section-title {
+            font-family: 'Gowun Batang', serif;
+            color: var(--point-color);
             font-size: 0.9rem;
-            color: #888;
+            letter-spacing: 3px;
             margin-bottom: 30px;
         }
 
-        /* [강조 텍스트] */
-        .highlight {
-            color: #e88ca6; /* 포인트 컬러 (분홍색 예시) */
+        /* 2. 초대글 */
+        .greeting-text { line-height: 2.2; font-size: 0.95rem; font-weight: 300; }
+
+        /* 3. 계좌번호 아코디언 */
+        .account-box {
+            background: #fdfaf7;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .account-btn {
+            background: var(--point-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        /* 4. 하단 참석 버튼 (고정) */
+        .rsvp-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 400px;
+            background: rgba(188, 160, 138, 0.95);
+            color: white;
+            padding: 15px;
+            border-radius: 30px;
+            text-decoration: none;
             font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 100;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header class="main-photo">
-            <img src="https://via.placeholder.com/480x640" alt="메인 웨딩 사진">
-        </header>
-
-        <section>
-            <h1 class="title">신랑이름 <span class="highlight">&hearts;</span> 신부이름</h1>
-            <p class="date-loc">
-                2024년 10월 20일 토요일 오후 1시<br>
-                아름다운 웨딩홀 1층 그랜드볼룸
-            </p>
-        </section>
-
-        <hr style="width: 50%; border: 0.5px solid #eee;">
-
-        <section>
-            <h3>소중한 분들을 초대합니다</h3>
-            <p>
-                서로의 이름을 부르는 것만으로도<br>
-                사랑의 깊이를 확인할 수 있는 두 사람이<br>
-                꽃과 나무처럼 걸어와서<br>
-                서로의 모든 것이 되려 합니다.
-            </p>
-        </section>
-
-        <section>
-            <h3>오시는 길</h3>
-            <div id="map" style="width:100%; height:300px; background-color:#eee;">
-                지도 영역
-            </div>
-        </section>
+<div class="wrapper">
+    <div class="main-section">
+        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80" class="main-img">
+        <div class="main-text">
+            <h1>성훈 & 채연</h1>
+            <p>2026. 05. 23. SAT PM 12:00</p>
+        </div>
     </div>
+
+    <section>
+        <div class="section-title">INVITATION</div>
+        <div class="greeting-text">
+            서로가 마주 보며 다진 약속을<br>
+            함께 걸어가는 믿음으로 지켜가겠습니다.<br>
+            저희의 새로운 시작을 축복해 주세요.
+        </div>
+    </section>
+
+    <section style="background-color: #fafafa;">
+        <div class="section-title">FOR YOUR HEART</div>
+        <p style="font-size: 0.85rem; color: #888;">축복의 마음을 전하실 곳</p>
+        <div class="account-box">
+            <button class="account-btn" onclick="alert('계좌번호가 복사되었습니다 (샘플)')">신랑측 마음 전하기</button>
+            <button class="account-btn" onclick="alert('계좌번호가 복사되었습니다 (샘플)')">신부측 마음 전하기</button>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-title">LOCATION</div>
+        <p><strong>아름다운 웨딩홀 1층</strong></p>
+        <p style="color: #888; font-size: 0.9rem;">서울 강남구 어느도로 123</p>
+        <div id="map" style="width:100%; height:250px; background:#eee; margin-top:20px; line-height:250px;">
+            (여기에 지도가 들어갑니다)
+        </div>
+    </section>
+
+    <div style="height: 100px;"></div> </div>
+
+<a href="https://forms.gle/본인의구글폼주소" class="rsvp-btn" target="_blank">
+    신랑 & 신부에게 참석 의사 전달하기
+</a>
 
 </body>
 </html>
