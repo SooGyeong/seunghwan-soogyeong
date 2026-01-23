@@ -28,39 +28,28 @@
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
         /* [1. 메인 섹션] */
-        .main-section { position: relative; width: 100%; text-align: center; padding-bottom: 50px; overflow: hidden; }
+        .main-section { position: relative; width: 100%; text-align: center; padding-bottom: 50px; overflow: hidden; background-color: #fff; }
         
-        /* 🌸 벚꽃 캔버스 스타일 (기존 snow-canvas 이름을 유지하되 스타일 동일) */
-        #snow-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* 클릭 방해 금지 */
-            z-index: 5; /* 이미지보다 위, 텍스트보다 아래 */
-        }
+        /* 🌸 벚꽃 캔버스 */
+        #petal-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
 
         .eng-name { position: absolute; top: 30px; color: white; font-family: 'Nanum Myeongjo', serif; font-size: 1.2rem; text-shadow: 0 0 5px rgba(0,0,0,0.3); z-index: 10; }
         .eng-name.left { left: 25px; }
         .eng-name.right { right: 25px; }
 
-        .main-img-wrap { width: 100%; height: 100vh; max-height: 700px; overflow: hidden; position: relative; background: #000; }
-        .main-img-wrap::after { content:''; position: absolute; top:0; left:0; width:100%; height:150px; background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent); z-index: 2; }
-        .main-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+        .main-img-wrap { width: 100%; height: 100vh; max-height: 700px; overflow: hidden; position: relative; }
+        .main-img-wrap::after { content:''; position: absolute; top:0; left:0; width:100%; height:150px; background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent); z-index: 2; }
+        .main-img { width: 100%; height: 100%; object-fit: cover; }
         
         .main-info { padding: 40px 0; position: relative; z-index: 10; }
         .main-info .date { font-size: 1rem; letter-spacing: 2px; color: var(--point-color); font-weight: bold; }
         .main-info .names { font-size: 1.8rem; margin: 20px 0; font-family: 'Nanum Myeongjo', serif; }
         .main-info .location { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 20px; }
-        
         .d-day-box { display: inline-block; background: var(--point-color); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; margin-top: 10px; }
 
-        /* [공통 섹션] */
+        /* [공통 섹션 스타일] */
         section { padding: 60px 25px; text-align: center; }
         .section-title { font-size: 0.8rem; color: var(--point-color); letter-spacing: 4px; margin-bottom: 30px; font-weight: bold; text-transform: uppercase; }
-
-        /* [2. 초대글] */
         .greeting-text { font-size: 0.95rem; line-height: 2.2; color: #444; }
         .family-info { margin-top: 50px; border-top: 1px solid #eee; padding-top: 40px; font-size: 1rem; }
         .family-info p { margin: 12px 0; }
@@ -68,7 +57,7 @@
 
         /* [갤러리] */
         .swiper { width: 100%; height: auto; padding-bottom: 30px; }
-        .swiper-slide img { display: block; width: 100%; height: 100vw; max-height: 480px; object-fit: cover; border-radius: 4px; pointer-events: none; }
+        .swiper-slide img { display: block; width: 100%; height: 100vw; max-height: 480px; object-fit: cover; border-radius: 4px; }
 
         /* [캘린더] */
         .calendar-wrap { background-color: var(--bg-soft); border-radius: 15px; padding: 30px 20px; margin-top: 20px; }
@@ -83,47 +72,40 @@
         #map { width: 100%; height: 350px; border-radius: 8px; margin-bottom: 20px; background-color: #eee; }
         .map-buttons { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
         .map-btn { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 6px; background: white; font-size: 0.85rem; text-decoration: none; color: #333; display: flex; align-items: center; justify-content: center; gap: 5px; }
-        
-        /* [마음 전하실 곳] */
+
+        /* [계좌번호] */
         .account-box { text-align: left; margin-top: 20px; }
         details { background: white; border: 1px solid #eee; margin-bottom: 12px; border-radius: 8px; overflow: hidden; }
         summary { padding: 18px; cursor: pointer; list-style: none; font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
         summary::after { content: '⌵'; color: var(--point-color); font-weight: bold; }
         details[open] summary::after { transform: rotate(180deg); }
         .account-row { padding: 15px 18px; background: #fdfdfd; border-top: 1px solid #f9f9f9; font-size: 0.9rem; display: flex; flex-direction: column; gap: 8px; }
-        .bank-info { display: flex; justify-content: space-between; align-items: center; }
-        .btn-group { display: flex; gap: 5px; justify-content: flex-end; margin-top: 5px; }
-        .btn-small { padding: 6px 12px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; text-decoration: none; display: inline-block; border: none; }
+        .btn-group { display: flex; gap: 5px; justify-content: flex-end; }
+        .btn-small { padding: 6px 12px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; border: none; }
         .btn-copy { background: #eee; color: #555; }
-        .btn-kakao { background: #fee500; color: #3c1e1e; }
+        .btn-kakao { background: #fee500; color: #3c1e1e; text-decoration: none; }
 
+        /* [공유바] */
         .share-bar { margin-top: 30px; display: flex; gap: 10px; justify-content: center; padding-bottom: 50px; }
         .kakao-share-btn { background: #fee500; color: #3c1e1e; padding: 15px 30px; border-radius: 30px; font-weight: bold; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
-
         .footer-image { width: 100%; height: auto; display: block; margin-top: 50px; }
     </style>
 </head>
 <body>
 
 <div class="wrapper">
-    <audio id="bgm" loop>
-        <source src="./music.mp3" type="audio/mp3">
-    </audio>
+    <audio id="bgm" loop><source src="./music.mp3" type="audio/mp3"></audio>
     <div class="bgm-btn" onclick="toggleBgm()">
-        <svg class="bgm-icon" viewBox="0 0 24 24">
-            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-        </svg>
+        <svg class="bgm-icon" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
     </div>
 
     <div class="main-section">
-        <canvas id="snow-canvas"></canvas>
-
+        <canvas id="petal-canvas"></canvas>
         <div class="main-img-wrap">
             <div class="eng-name left">Seunghwan</div>
             <div class="eng-name right">Sukyoung</div>
-            <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=800&q=80" class="main-img" alt="메인사진">
+            <img src="images/main.jpg" class="main-img" alt="메인사진">
         </div>
-        
         <div class="main-info" data-aos="fade-up">
             <div class="date">2026. 04. 18. SAT. PM 12:00</div>
             <div class="names">이승환 <small style="font-size: 1rem; color: #ccc; margin: 0 5px;">|</small> 조수경</div>
@@ -139,7 +121,8 @@
             서로의 이름을 부르는 것만으로도<br>
             사랑의 깊이를 확인합니다.<br><br>
             두 사람의 꽃다운 날,<br>
-            저희 약속의 자리에 소중한 분들을 모십니다.
+            저희 두 사람 약속의 자리에<br>
+            소중한 분들을 모십니다.
         </div>
         <div class="family-info" data-aos="fade-up">
             <p>이철수 · 김영희 <span style="font-size: 0.8rem; color: #999;">의 차남</span> <b>승환</b></p>
@@ -151,21 +134,34 @@
         <div class="section-title" data-aos="fade-up">GALLERY</div>
         <div class="swiper mySwiper" data-aos="fade-up">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="사진1"></div>
-                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?auto=format&fit=crop&w=800&q=80" alt="사진2"></div>
-                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?auto=format&fit=crop&w=800&q=80" alt="사진3"></div>
+                <div class="swiper-slide"><img src="images/photo1.jpg" alt="사진1"></div>
+                <div class="swiper-slide"><img src="images/photo2.jpg" alt="사진2"></div>
+                <div class="swiper-slide"><img src="images/photo3.jpg" alt="사진3"></div>
             </div>
             <div class="swiper-pagination"></div>
         </div>
     </section>
+
+    <section>
+        <div class="section-title" data-aos="fade-up">LOCATION</div>
+        <div id="map" data-aos="fade-up"></div>
+        <div class="location-text" data-aos="fade-up">
+            <h3 style="margin-bottom: 5px;">어느 예식장</h3>
+            <p style="font-size: 0.9rem; color: #666; margin-top:0;">서울특별시 강남구 테헤란로 123</p>
+        </div>
+        <div class="map-buttons" data-aos="fade-up">
+            <a href="https://naver.me/yourlink" target="_blank" class="map-btn">네이버 지도</a>
+            <a href="https://kko.to/yourlink" target="_blank" class="map-btn">카카오 맵</a>
+            <a href="tel:02-1234-5678" class="map-btn">전화 문의</a>
+        </div>
+    </section>
+
     <section style="background-color: var(--bg-soft);">
         <div class="section-title" data-aos="fade-up">WEDDING DAY</div>
         <div class="calendar-wrap" data-aos="fade-up">
             <div class="calendar-month">2026. 04</div>
             <table class="calendar-table">
-                <thead>
-                    <tr><th class="sun">SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr>
-                </thead>
+                <thead><tr><th class="sun">SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr></thead>
                 <tbody>
                     <tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
                     <tr><td class="sun">5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
@@ -177,88 +173,112 @@
         </div>
     </section>
 
-    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=80" class="footer-image" alt="마무리">
-    <div style="height:50px;"></div>
+    <section>
+        <div class="section-title" data-aos="fade-up">FOR YOUR HEART</div>
+        <div class="account-box" data-aos="fade-up">
+            <details>
+                <summary>신랑측 계좌번호</summary>
+                <div class="account-row">
+                    <span>국민 123456-01-123456 (이승환)</span>
+                    <div class="btn-group">
+                        <button class="btn-small btn-copy" onclick="copyToClipboard('123456-01-123456')">복사</button>
+                        <a href="#" class="btn-small btn-kakao">송금</a>
+                    </div>
+                </div>
+            </details>
+            <details>
+                <summary>신부측 계좌번호</summary>
+                <div class="account-row">
+                    <span>우리 1002-123-456789 (조수경)</span>
+                    <div class="btn-group">
+                        <button class="btn-small btn-copy" onclick="copyToClipboard('1002-123-456789')">복사</button>
+                        <a href="#" class="btn-small btn-kakao">송금</a>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <img src="images/footer.jpg" class="footer-image" alt="마무리">
+
+    <div class="share-bar">
+        <button class="kakao-share-btn" onclick="shareKakao()">카카오톡 공유하기</button>
+    </div>
 </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js"></script>
+<script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=YOUR_NAVER_CLIENT_ID"></script>
 
 <script>
-    // 1. AOS & Swiper
+    // 1. 기본 설정 (AOS, Swiper)
     AOS.init({ duration: 1000, once: true });
     var swiper = new Swiper(".mySwiper", { loop: true, pagination: { el: ".swiper-pagination", clickable: true }, autoHeight: true });
 
-    // 2. 🌸 벚꽃잎 휘날리는 효과 (Cherry Blossom Effect) 스크립트
-    const canvas = document.getElementById('snow-canvas');
+    // 2. 🌸 벚꽃 애니메이션 (Canvas 직접 그리기 방식)
+    const canvas = document.getElementById('petal-canvas');
     const ctx = canvas.getContext('2d');
     let width, height, petals = [];
-    
-    // 벚꽃잎 이미지 데이터 (Base64 encoded) - 외부 링크 깨짐 방지
-    const petalImg = new Image();
-    petalImg.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAACmElEQVQ4y61VTYtTQRQ99bxUp0JBhC4EM0FMN+Ii4qa4cKGUIuKqf8F/Ivi33LhR3LhSFwXFjZkiiiA2GvJq3uS9mwy+mU4XgQ8y792bueece+69E+A/j/B/+J/w76xOpxMvl8sDKeUqgB0A+4L+gH78A/A1hPAQk2iSJK8BvFStVnEwGGAymSClhBCCg5xzmKbJu4X3/rVarXbxZ9A0zbcAtmO7FUVBt9tFv9+H9x4AUBQFeZ6j2Wyi2WzG5/l83q5UKl9/BgFYZ+3W6/UwHA5hTAaV0pDCoCg8tFYwxtA0zV8+fI9d132dJMn3H4Gcc9c5Z7t7e3uYTCYIIfBHoZRCFEUwxgAAjDGoqqp7713Xdd+lWq1W3zRN+w6gHcfxNqM0TQEA3nvwP2Scc95g6L3nADoA+qVSaZOm6T1FUTYdx2GUpik0TQOAwBizYlFKwRgDALz3HECbUroR0s7a2hru7u7AGFux1bQ/b8k5RxzH0HWeH4YQ9lZWVnBxcYHlconBYIByuQxN0/A/l1IK3nt47+GcE9ba7bIsv3LOt5IkQa1Ww/n5Oa6vryGlRBRFcM5BCAGlFOr1OmRZBmNsg1J6B8A558jzfCuKIjSbTZydncE5h3q9DkppDIsxBucciqJAlmUwxtZ5nndDCPsAdlVVRZ7nqNfraDabKJfLiONYdIuQc448z2GMoWnaFqX0WggxA9CXUgohBIqiEABZlsEYg6ZpMExKaV2W5Y+Yq5sQwoJzfgFgm2W5KIqi7rruC6X0GkBrxVyO+b25EGIKoAegq6qq45zrY2uMsV0A+5zzm5i/2zHPr3HO+6qqegD24ji+AdCKY7s9/1xV1d/x/B+BP9M3914/9+i5R0MAAAAASUVORK5CYII=';
 
     function initPetals() {
         width = canvas.width = canvas.parentElement.offsetWidth;
         height = canvas.height = canvas.parentElement.offsetHeight;
         petals = [];
-        // 벚꽃잎 개수 조절 (너무 많으면 모바일에서 느려질 수 있음)
         for (let i = 0; i < 35; i++) {
             petals.push({
                 x: Math.random() * width,
-                y: Math.random() * -height, // 화면 위에서 시작
-                size: Math.random() * 10 + 8, // 크기 다양하게
-                speed: Math.random() * 1 + 0.5, // 떨어지는 속도
-                rotation: Math.random() * 360, // 초기 회전각
-                rotationSpeed: (Math.random() - 0.5) * 2, // 회전 속도 및 방향
-                oscillationSpeed: Math.random() * 0.02 + 0.01 // 흔들림 속도
+                y: Math.random() * height,
+                size: Math.random() * 8 + 6,
+                speed: Math.random() * 1 + 0.5,
+                angle: Math.random() * 360,
+                spin: Math.random() * 2 - 1,
+                wind: Math.random() * 0.5 - 0.25
             });
         }
     }
 
-    function drawPetals() {
-        ctx.clearRect(0, 0, width, height);
-        if (!petalImg.complete) return requestAnimationFrame(drawPetals); // 이미지 로딩 대기
-
-        petals.forEach(p => {
-            ctx.save();
-            // 위치 이동 및 흔들림 효과 (sin 함수 이용)
-            p.y += p.speed;
-            p.x += Math.sin(p.y * p.oscillationSpeed); 
-            p.rotation += p.rotationSpeed;
-
-            // 캔버스 회전 후 이미지 그리기
-            ctx.translate(p.x, p.y);
-            ctx.rotate(p.rotation * Math.PI / 180);
-            ctx.drawImage(petalImg, -p.size / 2, -p.size / 2, p.size, p.size);
-            ctx.restore();
-
-            // 화면 아래로 벗어나면 다시 위로 올림
-            if (p.y > height + 50) {
-                p.y = -50;
-                p.x = Math.random() * width;
-            }
-        });
-        requestAnimationFrame(drawPetals);
+    function drawPetal(p) {
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.angle * Math.PI / 180);
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(-p.size, -p.size, p.size, -p.size, 0, p.size);
+        ctx.fillStyle = 'rgba(255, 192, 203, 0.7)'; // 벚꽃 분홍색
+        ctx.fill();
+        ctx.restore();
     }
 
-    // 이미지 로드되면 애니메이션 시작
-    petalImg.onload = () => {
-        initPetals();
-        drawPetals();
-    };
-    window.addEventListener('resize', initPetals);
+    function updateAnimation() {
+        ctx.clearRect(0, 0, width, height);
+        petals.forEach(p => {
+            p.y += p.speed;
+            p.x += Math.sin(p.y / 60) + p.wind;
+            p.angle += p.spin;
+            if (p.y > height) { p.y = -20; p.x = Math.random() * width; }
+            drawPetal(p);
+        });
+        requestAnimationFrame(updateAnimation);
+    }
 
-    // 3. D-Day 계산 (동일)
+    window.addEventListener('resize', initPetals);
+    initPetals();
+    updateAnimation();
+
+    // 3. D-Day 계산
     const weddingDate = new Date('2026-04-18T12:00:00');
     function updateDday() {
         const diff = weddingDate - new Date();
         const diffDay = Math.ceil(diff / (1000 * 60 * 60 * 24));
-        document.getElementById('d-day').innerText = diffDay > 0 ? `D-${diffDay}` : (diffDay === 0 ? `D-DAY` : `D+${Math.abs(diffDay)}`);
+        const el = document.getElementById('d-day');
+        if (diffDay > 0) el.innerText = `D-${diffDay}`;
+        else if (diffDay === 0) el.innerText = `D-DAY`;
+        else el.innerText = `D+${Math.abs(diffDay)}`;
     }
     updateDday();
 
-    // 4. BGM & ETC (동일)
+    // 4. BGM 컨트롤
     const bgm = document.getElementById('bgm');
     const bgmBtn = document.querySelector('.bgm-btn');
     let isPlaying = false;
@@ -269,6 +289,18 @@
     }
     bgmBtn.classList.add('bgm-paused');
     document.body.addEventListener('click', () => { if(!isPlaying) toggleBgm(); }, { once: true });
+
+    // 5. 복사 및 공유 기능
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => alert('계좌번호가 복사되었습니다.'));
+    }
+
+    // 6. 네이버 지도 (API 키 필요)
+    try {
+        var map = new naver.maps.Map('map', { center: new naver.maps.LatLng(37.498095, 127.027610), zoom: 15 });
+        new naver.maps.Marker({ position: new naver.maps.LatLng(37.498095, 127.027610), map: map });
+    } catch(e) { document.getElementById('map').innerText = "지도 준비 중..."; }
 </script>
+
 </body>
 </html>
